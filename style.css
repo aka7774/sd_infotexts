@@ -1,0 +1,21 @@
+#tab_infotexts table{
+    border-collapse: collapse;
+    width: 100%
+}
+
+#tab_infotexts table td, #tab_infotexts table th{
+    border: 1px solid #ccc;
+    padding: 0.25em 0.5em;
+}
+
+#tab_infotexts table input[type="text"]{
+    width:100%;
+}
+
+#tab_infotexts button{
+    max-width: 16em;
+}
+
+#tab_infotexts input[disabled="disabled"]{
+    opacity: 0.5;
+}
