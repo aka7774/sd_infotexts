@@ -12,6 +12,17 @@ Perfect Reproduction Generate from Infotexts
 
 このExtensionは、画像とInfotextを相互変換する目的で作られた。
 
+### Infotextは不完全である
+
+- sd_model_hashが衝突する
+- Hypernetの名前が重複する
+- VAEの情報が無い
+- 再現性の妨げになる情報が記録されない
+
+この問題を改善した形式をInfotext Exと呼ぶ。
+
+このExtensionにはInfotext Ex出力機能が同梱されている。
+
 # 画像の保存と生成
 
 txt2imgで生成したPNGを保存する時には PNG Info を残す形で保存することが望ましい。
