@@ -60,6 +60,9 @@ def generate_images(p):
 
     input_dir = infotexts_models.get_generate_input_dir()
     output_dir = infotexts_models.get_generate_output_dir(False)
+    
+    cfg = infotexts_models.load_generate_settings()
+
     jobs = []
     for filename in os.listdir(input_dir):
         if not filename.endswith('.txt'):
@@ -72,6 +75,11 @@ def generate_images(p):
         # 厳密な型変換
         for k, v in data.items():
             k = k.lower()
+
+            # 無視するキー(txt2imgの入力を使う)
+            if k in cfg['ignore_keys']:
+                continue
+            
             if k in ["width","height","steps","clip_skip","ensd","subseed","seed_resize_from_w","seed_resize_from_h"]:
                 job.update({k: int(v)})
             elif k in ["cfg_scale","hypernet_strength", "eta","subseed_strength","denoising_strength"]:
