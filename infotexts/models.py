@@ -169,7 +169,7 @@ def get_ignore_keys():
 
 def txt_to_dict(filepath, is_array = False):
     import modules.generation_parameters_copypaste as parameters_copypaste
-    with open(filepath, 'r') as f:
+    with open(filepath, 'r', encoding="utf-8") as f:
         text = f.read()
     params = parameters_copypaste.parse_generation_parameters(text)
 
