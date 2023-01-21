@@ -17,10 +17,10 @@ def create_infotext_ex(p, all_prompts, all_seeds, all_subseeds, comments=None, i
     
     exs = {}
 
-    model_sha256_path = shared.sd_model.sd_checkpoint_info.filename + '.sha256'
-    if not os.path.exists(model_sha256_path):
-        pathlib.Path(model_sha256_path).write_text(calc_hash('sha256', shared.sd_model.sd_checkpoint_info.filename))
-    exs['Model sha256'] = pathlib.Path(model_sha256_path).read_text()[:16]
+#    model_sha256_path = shared.sd_model.sd_checkpoint_info.filename + '.sha256'
+#    if not os.path.exists(model_sha256_path):
+#        pathlib.Path(model_sha256_path).write_text(calc_hash('sha256', shared.sd_model.sd_checkpoint_info.filename))
+#    exs['Model sha256'] = pathlib.Path(model_sha256_path).read_text()[:16]
 
     if sd_vae.loaded_vae_file is not None:
         vae_sha256_path = sd_vae.loaded_vae_file + '.sha256'
@@ -28,11 +28,11 @@ def create_infotext_ex(p, all_prompts, all_seeds, all_subseeds, comments=None, i
             pathlib.Path(vae_sha256_path).write_text(calc_hash('sha256', sd_vae.loaded_vae_file))
         exs['VAE sha256'] = pathlib.Path(vae_sha256_path).read_text()[:16]
 
-    if shared.loaded_hypernetwork is not None:
-        hyper_sha256_path = shared.loaded_hypernetwork.filename + '.sha256'
-        if not os.path.exists(hyper_sha256_path):
-            pathlib.Path(hyper_sha256_path).write_text(calc_hash('sha256', shared.loaded_hypernetwork.filename))
-        exs['Hypernet sha256'] = pathlib.Path(hyper_sha256_path).read_text()[:16]
+#    if shared.loaded_hypernetwork is not None:
+#        hyper_sha256_path = shared.loaded_hypernetwork.filename + '.sha256'
+#        if not os.path.exists(hyper_sha256_path):
+#            pathlib.Path(hyper_sha256_path).write_text(calc_hash('sha256', shared.loaded_hypernetwork.filename))
+#        exs['Hypernet sha256'] = pathlib.Path(hyper_sha256_path).read_text()[:16]
 
     # 同一の生成が出来ない条件の列挙
     options = []

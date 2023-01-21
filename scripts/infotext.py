@@ -7,6 +7,13 @@ from modules import script_callbacks, sd_models, shared
 import infotexts.models as infotexts_models
 import infotexts.actions as infotexts_actions
 
+#def my_function(progress = gr.Progress()):
+#    progress(0, desc="Starting...")
+#    time.sleep(1)
+#    for i in progress.tqdm(range(100)):
+#        time.sleep(0.1)
+#    return "Progress Done!"
+
 def on_ui_tabs():
     with gr.Blocks() as infotexts:
         with gr.Row(equal_height=True):
@@ -14,6 +21,7 @@ def on_ui_tabs():
         with gr.Tabs() as tabs:
             with gr.TabItem("Convert"):
                 with gr.Row():
+                    #progress_run = gr.Button("Convert")
                     list_help = gr.HTML(list_html())
                 with gr.Row():
                     convert_action = gr.Radio(choices=infotexts_actions.get_convert_actions(), label="Action", interactive=True)
@@ -81,10 +89,16 @@ def on_ui_tabs():
             outputs=[input_dir, output_dir],
         )
         
+        #progress_run.click(
+        #    fn=my_function,
+        #    inputs=[],
+        #    outputs=[out_html],
+        #)
+        
         convert_run.click(
             fn=infotexts_actions.convert,
             inputs=[convert_action, input_dir, output_dir],
-            outputs=[out_html],
+            outputs=[],
         )
         
         macro_add_line.click(
