@@ -12,7 +12,7 @@ from modules import shared, processing, generation_parameters_copypaste
 
 def create_infotext_ex(p, all_prompts, all_seeds, all_subseeds, comments=None, iteration=0, position_in_batch=0):
     infotext = create_infotext_original(p, all_prompts, all_seeds, all_subseeds, comments, iteration, position_in_batch)
-    if infotext.find(', Model sha256: ') > -1:
+    if infotext.find(', VAE sha256: ') > -1:
         return infotext
     
     exs = {}
