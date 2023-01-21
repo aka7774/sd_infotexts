@@ -118,7 +118,7 @@ def generate_images(p):
 
         # 値の指定が無いものは任意ではなく、以下の値が指定されているものとみなす
         opts.eta_noise_seed_delta = 0
-        opts.sd_hypernetwork_strength = 1.0
+#        opts.sd_hypernetwork_strength = 1.0
         opts.eta_ddim = 0.0
         opts.eta_ancestral = 1.0
 
@@ -131,19 +131,19 @@ def generate_images(p):
                 for c in sd_models.checkpoints_list.values():
                     if c.hash == v:
                         copy_p.override_settings['sd_model_checkpoint'] = c.title
-            elif k == "hypernet":
-                if "hypernet_sha256" in job.keys():
-                    continue
-                if v == "None":
-                    opts.sd_hypernetwork = None
-                    continue
-                if shared.loaded_hypernetwork != None and shared.loaded_hypernetwork.name == v:
-                    continue
-                if not v in hypernet_names.keys():
-                    continue
-                path = hypernet_names[v]
-                shared.loaded_hypernetwork = hypernetwork.Hypernetwork()
-                shared.loaded_hypernetwork.load(path)
+#            elif k == "hypernet":
+#                if "hypernet_sha256" in job.keys():
+#                    continue
+#                if v == "None":
+#                    opts.sd_hypernetwork = None
+#                    continue
+#                if shared.loaded_hypernetwork != None and shared.loaded_hypernetwork.name == v:
+#                    continue
+#                if not v in hypernet_names.keys():
+#                    continue
+#                path = hypernet_names[v]
+#                shared.loaded_hypernetwork = hypernetwork.Hypernetwork()
+#                shared.loaded_hypernetwork.load(path)
             elif k == "model_sha256":
                 path = sha256.match_sha256(v, ckpt_sha256s)
                 if not path:
@@ -157,14 +157,14 @@ def generate_images(p):
                         sd_models.load_model_weights(shared.sd_model, c, vae_file=vae_file)
             elif k == "vae_sha256":
                 pass
-            elif k == "hypernet_sha256":
-                path = sha256.match_sha256(v, hypernet_sha256s)
-                if not path:
-                    continue
-                shared.loaded_hypernetwork = hypernetwork.Hypernetwork()
-                shared.loaded_hypernetwork.load(path)
-            elif k == "hypernet_strength":
-                opts.sd_hypernetwork_strength = float(v)
+#            elif k == "hypernet_sha256":
+#                path = sha256.match_sha256(v, hypernet_sha256s)
+#                if not path:
+#                    continue
+#                shared.loaded_hypernetwork = hypernetwork.Hypernetwork()
+#                shared.loaded_hypernetwork.load(path)
+#            elif k == "hypernet_strength":
+#                opts.sd_hypernetwork_strength = float(v)
             elif k == "ensd":
                 opts.eta_noise_seed_delta = v
             else:
@@ -176,8 +176,8 @@ def generate_images(p):
     # 変えた設定を元に戻す
     opts.save_images_add_number = original_opts.save_images_add_number
     opts.eta_noise_seed_delta = original_opts.eta_noise_seed_delta
-    opts.sd_hypernetwork = original_opts.sd_hypernetwork
-    opts.sd_hypernetwork_strength = original_opts.sd_hypernetwork_strength
+#    opts.sd_hypernetwork = original_opts.sd_hypernetwork
+#    opts.sd_hypernetwork_strength = original_opts.sd_hypernetwork_strength
     opts.eta_ddim = original_opts.eta_ddim
     opts.eta_ancestral = original_opts.eta_ancestral
     opts.samples_filename_pattern = original_opts.samples_filename_pattern
